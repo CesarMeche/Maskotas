@@ -2,7 +2,7 @@ package animales;
 
 import java.util.Date;
 
-import vacuna.Vacuna;
+import Vacuna.*;
 
 public abstract class Animal {
     private String nombre;

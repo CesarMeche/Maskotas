@@ -1,4 +1,4 @@
-package view.Ventanas;
+package view.ventanas;
 
 import javax.swing.JFrame;
 
