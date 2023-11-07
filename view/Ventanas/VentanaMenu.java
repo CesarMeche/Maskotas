@@ -72,6 +72,23 @@ public class VentanaMenu extends Ventana {
         gbc.gridwidth = 2;
         panelDatos.add(botonEnviar, gbc);
 
+        JButton botonCrearUsuario = new JButton("Crear Usuario");
+        botonCrearUsuario.setFont(new Font("Open Sans", Font.PLAIN, 16));
+        botonCrearUsuario.setBackground(Color.black);
+        botonCrearUsuario.setForeground(Color.white);
+        botonCrearUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VentanaCrearUsuario ventanaCrearUsuario = new VentanaCrearUsuario("Crear Usuario");
+                ventanaCrearUsuario.mostrar();
+            }
+        });
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        panelDatos.add(botonCrearUsuario, gbc);
+
         JPanel panelPrincipal = new JPanel(new GridBagLayout());
         gbc.gridx = 0;
         gbc.gridy = 0;
