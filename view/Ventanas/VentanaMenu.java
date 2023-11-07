@@ -63,7 +63,7 @@ public class VentanaMenu extends Ventana {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(
-                        "hola david que diga muindo skhdskjhfsdkjfbglskdfhvgolabvoibajnvcoanvkjsdpovjndwsohvp;soadnvojhdafovij");
+                        "hola davidaaaa que diga muindo skhdskjhfsdkjfbglskdfhvgolabvoibajnvcoanvkjsdpovjndwsohvp;soadnvojhdafovij");
             }
         });
 
