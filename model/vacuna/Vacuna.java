@@ -1,4 +1,3 @@
-vacuna
 public class Vacuna {
     int id;
     String nombre;
