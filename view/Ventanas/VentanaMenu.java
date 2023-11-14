@@ -55,13 +55,14 @@ public class VentanaMenu extends Ventana {
         gbc.gridx = 1;
         panelDatos.add(campocontrasenia, gbc);
 
-        JButton botonEnviar = new JButton("Enviar");
+        JButton botonEnviar = new JButton("Ingresar");
         botonEnviar.setFont(new Font("Open Sans", Font.PLAIN, 16));
         botonEnviar.setBackground(Color.black);
         botonEnviar.setForeground(Color.white);
         botonEnviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println(
                         "hola davidaaaa que diga muindo skhdskjhfsdkjfbglskdfhvgolabvoibajnvcoanvkjsdpovjndwsohvp;soadnvojhdafovij");
             }
