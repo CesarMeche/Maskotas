@@ -23,6 +23,7 @@ public class VentanaMenu extends Ventana {
 
     @Override
     protected void inicializarContenido() {
+
         JPanel panelDatos = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
@@ -96,6 +97,9 @@ public class VentanaMenu extends Ventana {
         gbc.insets = new Insets(10, 10, 10, 10);
         panelPrincipal.add(panelDatos, gbc);
         panelDatos.setBackground(Color.yellow);
+        panelPrincipal.setBackground(Color.green); // Establecer el color de fondo aquí
+
+        getContentPane().add(panelPrincipal);
 
         getContentPane().add(panelPrincipal);
     }
