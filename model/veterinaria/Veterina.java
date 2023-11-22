@@ -1,10 +1,13 @@
 package veterinaria;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.io.*;
-import java.util.ArrayList;
-import animales.Animal;
-import animales.Caballo;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+
+import animales.*;
 import personas.Usuario;
 import personas.Veterinario;
 
@@ -29,24 +32,33 @@ public class Veterina {
         this.animales = animales;
     }
 
-    public void aniadirMascota(String nombre, int edad, String genero, String fechaNacimiento, String especie,
+    public void aniadirMascota(String nombre, String genero, Date fechaNacimiento, String especie,
             String duenio) {
+
+        LocalDate fechaNacimientoLocalDate = fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        LocalDate fechaActual = LocalDate.now();
+
+        int edad = Period.between(fechaNacimientoLocalDate, fechaActual).getYears();
+
         switch (especie) {
             case "caballo":
-                animales.add(new Caballo(nombre, edad, genero, fechaNacimiento, duenio));
+                animales.add(new Caballo(nombre, edad, genero, fechaNacimiento, especie, duenio));
                 break;
             case "gato":
-
+                animales.add(new Gato(nombre, edad, genero, fechaNacimiento, especie, duenio));
                 break;
             case "oveja":
-
+                animales.add(new Oveja(nombre, edad, genero, fechaNacimiento, especie, duenio));
                 break;
             case "pato":
-
+                animales.add(new Pato(nombre, edad, genero, fechaNacimiento, especie, duenio));
                 break;
             case "perro":
+                animales.add(new Perro(nombre, edad, genero, fechaNacimiento, especie, duenio));
                 break;
             case "vaca":
+                animales.add(new Vaca(nombre, edad, genero, fechaNacimiento, especie, duenio));
                 break;
             default:
                 break;

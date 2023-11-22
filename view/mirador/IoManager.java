@@ -6,6 +6,7 @@ import view.ventanas.*;
 public class IoManager {
     private Presentador presentador;
     private VentanaMenuPrincipal vMP;
+    private VentanaAgendarCita vAC;
     private VentanaMenu vM;
     private AniadirMascota aM;
     private VerMascotas VerMascotas;
@@ -15,23 +16,31 @@ public class IoManager {
     }
 
     public void iniciarMenu(String user) {
-        vMP = new VentanaMenuPrincipal("Menu", presentador, user);
+        vMP = new VentanaMenuPrincipal("Maskotas", presentador, user);
         vMP.mostrar();
     }
 
+    public void iniciarAgendarCita() {
+        vAC = new VentanaAgendarCita(presentador);
+        vAC.mostrar();
+    }
+
     public void iniciarLogin() {
-        vM = new VentanaMenu("Menu", presentador);
+        vM = new VentanaMenu("Maskotas", presentador);
         vM.mostrar();
     }
 
-    public void agregarMascota(String titulo) {
-        aM = new AniadirMascota(titulo, presentador);
+    public void agregarMascota() {
+        aM = new AniadirMascota("Maskotas", presentador);
         aM.mostrar();
     }
 
-    public void verMascotas(String titulo) {
-        VerMascotas = new VerMascotas(titulo, presentador);
+    public void verMascotas() {
+        VerMascotas = new VerMascotas("Maskotas", presentador);
         VerMascotas.mostrar();
+    }
+
+    public void verCitas() {
     }
 
     public Presentador getPresentador() {
@@ -65,4 +74,5 @@ public class IoManager {
     public void setaM(AniadirMascota aM) {
         this.aM = aM;
     }
+
 }

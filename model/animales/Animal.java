@@ -10,20 +10,16 @@ public abstract class Animal implements getDuenio {
     private String genero;
     private Date fechaNacimiento;
     private String especie;
-    private Vacuna[] vacunas;
-    private String[] enfermedades;
     private String duenio;
 
     public Animal(String nombre, int edad, String genero, Date fechaNacimiento, String especie,
-            Vacuna[] vacunas, String[] enfermedades, String duenio) {
+            String duenio) {
         this.nombre = nombre;
         this.edad = edad;
         this.genero = genero;
 
         this.fechaNacimiento = fechaNacimiento;
         this.especie = especie;
-        this.vacunas = vacunas;
-        this.enfermedades = enfermedades;
         this.duenio = duenio;
     }
 
@@ -65,22 +61,6 @@ public abstract class Animal implements getDuenio {
 
     public void setEspecie(String especie) {
         this.especie = especie;
-    }
-
-    public Vacuna[] getVacunas() {
-        return vacunas;
-    }
-
-    public void setVacunas(Vacuna[] vacunas) {
-        this.vacunas = vacunas;
-    }
-
-    public String[] getEnfermedades() {
-        return enfermedades;
-    }
-
-    public void setEnfermedades(String[] enfermedades) {
-        this.enfermedades = enfermedades;
     }
 
     public String getDuenio() {

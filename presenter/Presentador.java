@@ -1,5 +1,6 @@
 package presenter;
 
+import java.util.Date;
 import java.util.List;
 
 import personas.Usuario;
@@ -17,7 +18,7 @@ public class Presentador {
         veterinaria = new Veterina("Maskotas");
         io.iniciarLogin();
         usuario = new Usuario();
-        this.aniadirMascota("1", "2", "3", "4", "5");
+        this.aniadirMascota("Chuco", "masculino", new Date(1990, 2, 3), "perro", "admin");
         this.crearUsuario("11", "admin", "admin");
         this.CargarVeterina();
 
@@ -34,18 +35,19 @@ public class Presentador {
     }
 
     public void aniadirMacota() {
-
+        io.agregarMascota();
     }
 
     public void agendarCita() {
-
+        io.iniciarAgendarCita();
     }
 
     public void verCitas() {
+        io.verCitas();
     }
 
     public void verMacotas() {
-        io.verMascotas("Maskotas");
+        io.verMascotas();
     }
 
     public void crearUsuario(String cedula, String user, String password) {
@@ -72,8 +74,10 @@ public class Presentador {
         return citas;
     }
 
-    public void aniadirMascota(String nombre, String edad, String genero, String string, String text4) {
+    public void aniadirMascota(String nombre, String genero, Date fechaNacimiento, String especie,
+            String duenio) {
 
+        veterinaria.aniadirMascota(nombre, genero, fechaNacimiento, especie, duenio);
     }
 
     public void GuardarVeterina(Veterina veterinaria) {

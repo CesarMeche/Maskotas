@@ -1,9 +1,18 @@
 package view.ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.Properties;
+
+import org.jdatepicker.DateLabelFormatter;
+import org.jdatepicker.JDatePicker;
+import org.jdatepicker.UtilDateModel;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,6 +21,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import javax.swing.SwingConstants;
+
+import org.jdatepicker.DateLabelFormatter;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
 
 import presenter.Presentador;
 
@@ -27,7 +40,7 @@ public class AniadirMascota extends Ventana {
 
     @Override
     protected void inicializarContenido() {
-        main = new JPanel(new GridLayout(4, 2));
+        main = new JPanel(new GridLayout(3, 2));
         JLabel label = new JLabel("Añadir Mascota");
         label.setHorizontalAlignment(SwingConstants.CENTER);
         JLabel nombre = new JLabel("Nombre:");
@@ -44,13 +57,18 @@ public class AniadirMascota extends Ventana {
         main.add(label);
         main.add(nombre);
         main.add(nombretxt);
-        main.add(edad);
-        main.add(edadtxt);
         main.add(genero);
         main.add(generotxt);
 
         JButton button2 = new JButton("Cancelar");
         JButton button = new JButton("Siguiente");
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+
+            }
+        });
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,25 +91,36 @@ public class AniadirMascota extends Ventana {
         idLabel.setHorizontalAlignment(SwingConstants.CENTER);
         JLabel idLabel2 = new JLabel("Fecha de nacimiento:");
         idLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-
-        JTextField idTextField = new JTextField();
+        UtilDateModel model = new UtilDateModel();
+        Properties properties = new Properties();
+        JDatePicker fechaDatePicker = new JDatePickerImpl(new JDatePanelImpl(model, properties),
+                new DateLabelFormatter());
         String[] especies = { "Perro", "Gato", "pato", "Oveja", "Vaca", "Caballo" };
         JComboBox<String> combo = new JComboBox<String>(especies);
         main.add(idLabel);
         main.add(combo);
         main.add(idLabel2);
-        main.add(idTextField);
+        main.add((Component) fechaDatePicker);
 
         JButton button2 = new JButton("Cancelar");
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(main);
+                inicializarContenido();
+                dispose();
+
+            }
+        });
         JButton button = new JButton("Finalizar");
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                getPresentador().aniadirMascota(nombretxt.getText(),
-                        edadtxt.getText(), generotxt.getText(),
+                getPresentador().aniadirMascota(nombretxt.getText(), generotxt.getText(),
+                        (Date) fechaDatePicker.getModel().getValue(),
                         combo.getSelectedItem().toString(),
-                        idTextField.getText());
+                        getPresentador().getUsuario().getUsername());
             }
         });
         main.add(button2);
