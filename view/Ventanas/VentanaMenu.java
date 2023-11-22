@@ -1,11 +1,16 @@
 package view.ventanas;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import presenter.Presentador;
+
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,8 +22,8 @@ public class VentanaMenu extends Ventana {
     private JTextField campoUsuario;
     private JTextField campocontrasenia;
 
-    public VentanaMenu(String titulo) {
-        super(titulo);
+    public VentanaMenu(String titulo, Presentador presentador) {
+        super(titulo, presentador);
     }
 
     @Override
@@ -27,8 +32,8 @@ public class VentanaMenu extends Ventana {
         JPanel panelDatos = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
-        JLabel mensajeBienvenida = new JLabel("¡Bienvenido! Por favor, ingrese sus datos de acceso.");
-        mensajeBienvenida.setFont(new Font("Open Sans", Font.BOLD, 18));
+        JLabel mensajeBienvenida = new JLabel("Ingresa tus datos de acceso.");
+        mensajeBienvenida.setFont(new Font("Imprima", Font.BOLD, 18));
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
@@ -36,14 +41,13 @@ public class VentanaMenu extends Ventana {
         panelDatos.add(mensajeBienvenida, gbc);
 
         JLabel labelUsuario = new JLabel("Ingrese su usuario");
-        labelUsuario.setFont(new Font("Open Sans", Font.PLAIN, 16));
+        labelUsuario.setFont(new Font("Bold", Font.PLAIN, 11));
         campoUsuario = new JTextField(20);
 
         JLabel labelcontrasenia = new JLabel("Ingrese su contrasenia");
-        labelcontrasenia.setFont(new Font("Open Sans", Font.PLAIN, 16));
+        labelcontrasenia.setFont(new Font("Bold", Font.PLAIN, 11));
 
         campocontrasenia = new JTextField(20);
-
         gbc.gridx = 0;
         gbc.gridy = 1;
         panelDatos.add(labelUsuario, gbc);
@@ -57,15 +61,14 @@ public class VentanaMenu extends Ventana {
         panelDatos.add(campocontrasenia, gbc);
 
         JButton botonEnviar = new JButton("Ingresar");
-        botonEnviar.setFont(new Font("Open Sans", Font.PLAIN, 16));
-        botonEnviar.setBackground(Color.black);
-        botonEnviar.setForeground(Color.white);
+        botonEnviar.setFont(new Font("Inter", Font.PLAIN, 12));
+        botonEnviar.setBackground(Color.decode("#FDBF85"));
+        botonEnviar.setForeground(Color.black);
         botonEnviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                getPresentador().login(campoUsuario.getText(), campocontrasenia.getText());
 
-                System.out.println(
-                        "hola davidaaaa que diga muindo skhdskjhfsdkjfbglskdfhvgolabvoibajnvcoanvkjsdpovjndwsohvp;soadnvojhdafovij");
             }
         });
 
@@ -75,13 +78,13 @@ public class VentanaMenu extends Ventana {
         panelDatos.add(botonEnviar, gbc);
 
         JButton botonCrearUsuario = new JButton("Crear Usuario");
-        botonCrearUsuario.setFont(new Font("Open Sans", Font.PLAIN, 16));
-        botonCrearUsuario.setBackground(Color.black);
-        botonCrearUsuario.setForeground(Color.white);
+        botonCrearUsuario.setFont(new Font("Inter", Font.PLAIN, 12));
+        botonCrearUsuario.setBackground(Color.decode("#FDBF85"));
+        botonCrearUsuario.setForeground(Color.black);
         botonCrearUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                VentanaCrearUsuario ventanaCrearUsuario = new VentanaCrearUsuario("Crear Usuario");
+                VentanaCrearUsuario ventanaCrearUsuario = new VentanaCrearUsuario("Crear Usuario", getPresentador());
                 ventanaCrearUsuario.mostrar();
             }
         });
@@ -96,12 +99,16 @@ public class VentanaMenu extends Ventana {
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10);
         panelPrincipal.add(panelDatos, gbc);
-        panelDatos.setBackground(Color.yellow);
-        panelPrincipal.setBackground(Color.green); // Establecer el color de fondo aquí
+        panelDatos.setBackground(Color.white);
+        panelPrincipal.setBackground(Color.decode("#94C8F8")); // Establecer el color de fondo aquí
 
         getContentPane().add(panelPrincipal);
 
         getContentPane().add(panelPrincipal);
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
     }
 
 }

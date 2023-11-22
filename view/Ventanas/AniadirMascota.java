@@ -1,7 +1,6 @@
 package view.ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,14 +10,19 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JPasswordField;
+
 import javax.swing.SwingConstants;
+
+import presenter.Presentador;
 
 public class AniadirMascota extends Ventana {
     JPanel main;
+    JTextField nombretxt;
+    JTextField edadtxt;
+    JTextField generotxt;
 
-    public AniadirMascota(String titulo) {
-        super(titulo);
+    public AniadirMascota(String titulo, Presentador presentador) {
+        super(titulo, presentador);
     }
 
     @Override
@@ -69,9 +73,9 @@ public class AniadirMascota extends Ventana {
         idLabel.setHorizontalAlignment(SwingConstants.CENTER);
         JLabel idLabel2 = new JLabel("Fecha de nacimiento:");
         idLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+
         JTextField idTextField = new JTextField();
-        String[] especies = { "Perro", "Gato", "pato", "Oveja", "Vaca",
-                "Caballo" };
+        String[] especies = { "Perro", "Gato", "pato", "Oveja", "Vaca", "Caballo" };
         JComboBox<String> combo = new JComboBox<String>(especies);
         main.add(idLabel);
         main.add(combo);
@@ -83,17 +87,16 @@ public class AniadirMascota extends Ventana {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                enviareDatos();
+
+                getPresentador().aniadirMascota(nombretxt.getText(),
+                        edadtxt.getText(), generotxt.getText(),
+                        combo.getSelectedItem().toString(),
+                        idTextField.getText());
             }
         });
         main.add(button2);
         main.add(button);
         add(main, BorderLayout.CENTER);
         revalidate();
-    }
-
-    private void enviareDatos() {
-        System.out.println("Tenemos que implentar esto jjsjsjsfddsfgasd");
-        dispose();
     }
 }

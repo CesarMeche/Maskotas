@@ -4,23 +4,22 @@ import java.util.Date;
 
 import Vacuna.*;
 
-public abstract class Animal {
+public abstract class Animal implements getDuenio {
     private String nombre;
     private int edad;
     private String genero;
-    private Date fechaRegistro;
     private Date fechaNacimiento;
     private String especie;
     private Vacuna[] vacunas;
     private String[] enfermedades;
     private String duenio;
 
-    public Animal(String nombre, int edad, String genero, Date fechaRegistro, Date fechaNacimiento, String especie,
+    public Animal(String nombre, int edad, String genero, Date fechaNacimiento, String especie,
             Vacuna[] vacunas, String[] enfermedades, String duenio) {
         this.nombre = nombre;
         this.edad = edad;
         this.genero = genero;
-        this.fechaRegistro = fechaRegistro;
+
         this.fechaNacimiento = fechaNacimiento;
         this.especie = especie;
         this.vacunas = vacunas;
@@ -50,14 +49,6 @@ public abstract class Animal {
 
     public void setGenero(String genero) {
         this.genero = genero;
-    }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
     }
 
     public Date getFechaNacimiento() {

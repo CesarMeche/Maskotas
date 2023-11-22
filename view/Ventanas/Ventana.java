@@ -4,10 +4,19 @@ import javax.swing.JFrame;
 
 import javax.swing.WindowConstants;
 
+import presenter.Presentador;
+
 public abstract class Ventana extends JFrame {
 
-    public Ventana(String titulo) {
+    public Presentador presentador;
+
+    public Presentador getPresentador() {
+        return presentador;
+    }
+
+    public Ventana(String titulo, Presentador presentador) {
         super(titulo);
+        this.presentador = presentador;
         inicializarVentana();
         inicializarContenido();
     }
